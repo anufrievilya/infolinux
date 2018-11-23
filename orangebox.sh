@@ -21,3 +21,26 @@ fi
 echo $OS
 echo $ARCH
 echo $VERSION
+
+case $OS in
+	ubuntu)
+		echo "UBUNTU!"
+		;;
+	centos)
+		echo "centos"
+		;;
+	*)
+		echo "help"
+		;;
+esac
+
+check_distro(){
+	if [[ -e /etc/redhat-release ]]
+	then	
+		DISTRO=$(cat /etc/redhat-release)
+	elif [[ -e /etc/lsb_release ]]
+	then
+		DISTRO=$(lsb_release -d | awk -F ':' '{print $2}')
+	fi
+
+}
